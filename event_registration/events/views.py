@@ -18,7 +18,7 @@ def create_event(request):
             return redirect('event_list')
     else:
         form = EventForm()
-    return render(request, 'events/create_event.html', {'form': form})
+    return render(request, 'create_event.html', {'form': form})
 
 @login_required
 @user_passes_test(is_admin)
@@ -31,7 +31,7 @@ def update_event(request, event_id):
             return redirect('event_list')
     else:
         form = EventForm(instance=event)
-    return render(request, 'events/update_event.html', {'form': form})
+    return render(request, 'update_event.html', {'form': form})
 
 @login_required
 @user_passes_test(is_admin)
@@ -40,7 +40,7 @@ def delete_event(request, event_id):
     if request.method == 'POST':
         event.delete()
         return redirect('event_list')
-    return render(request, 'events/delete_event.html', {'event': event})
+    return render(request, 'delete_event.html', {'event': event})
 
 @login_required
 def register_event(request, event_id):
@@ -48,7 +48,7 @@ def register_event(request, event_id):
     if request.method == 'POST':
         event.registrants.add(request.user)
         return redirect('event_list')
-    return render(request, 'events/register_event.html', {'event': event})
+    return render(request, 'register_event.html', {'event': event})
 
 @login_required
 def unregister_event(request, event_id):
@@ -56,38 +56,38 @@ def unregister_event(request, event_id):
     if request.method == 'POST':
         event.registrants.remove(request.user)
         return redirect('event_list')
-    return render(request, 'events/unregister_event.html', {'event': event})
+    return render(request, 'unregister_event.html', {'event': event})
 
 @login_required
 def event_list(request):
     events = Event.objects.all()
-    return render(request, 'events/event_list.html', {'events': events})
+    return render(request, 'event_list.html', {'events': events})
 
 @login_required
 def registered_events(request):
     events = request.user.registered_events.all()
-    return render(request, 'events/registered_events.html', {'events': events})
+    return render(request, 'registered_events.html', {'events': events})
 
 @login_required
 @user_passes_test(is_admin)
 def user_list(request):
     users = User.objects.all()
-    return render(request, 'events/user_list.html', {'users': users})
+    return render(request, 'user_list.html', {'users': users})
 
 @login_required
 def event_list_report(request):
     events = Event.objects.filter(end_date__gte=timezone.now())
-    return render(request, 'events/event_list_report.html', {'events': events})
+    return render(request, 'event_list_report.html', {'events': events})
 
 @login_required
 @user_passes_test(is_admin)
 def all_events_report(request):
     events = Event.objects.all()
-    return render(request, 'events/all_events_report.html', {'events': events})
+    return render(request, 'all_events_report.html', {'events': events})
 
 @login_required
 @user_passes_test(is_admin)
 def event_registrants_report(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     registrants = event.registrants.all()
-    return render(request, 'events/event_registrants_report.html', {'event': event, 'registrants': registrants})
+    return render(request, 'event_registrants_report.html', {'event': event, 'registrants': registrants})

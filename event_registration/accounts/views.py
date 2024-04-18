@@ -14,7 +14,7 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'accounts/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -26,9 +26,9 @@ def user_login(request):
             return redirect('event_list')
         else:
             error_message = 'Invalid login credentials'
-            return render(request, 'accounts/login.html', {'error_message': error_message})
+            return render(request, 'login.html', {'error_message': error_message})
     else:
-        return render(request, 'accounts/login.html')
+        return render(request, 'login.html')
 
 def user_logout(request):
     logout(request)

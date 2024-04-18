@@ -21,34 +21,28 @@ git clone https://github.com/joshgervais/joshgervais-256A03.git
 2. Navigate to the project directory:
 
 ```bash
-cd event-registration-system
+cd event-registration
 ``````
 
-3. Install the project dependencies:
-
-```bash
-pip install -r requirements.txt
-``````
-
-4. Apply database migrations:
+3. Apply database migrations:
 
 ```bash
 python manage.py migrate
 ``````
 
-5. Create a superuser account:
+4. Create a superuser account:
 
 ```bash
 python manage.py createsuperuser
 ``````
 
-6. Start the development server:
+5. Start the development server:
 
 ```bash
 python manage.py runserver
 ``````
 
-7. Access the application in your web browser at `http://localhost:8000`.
+6. Access the application in your web browser at `http://localhost:8000`.
 
 ## Usage
 

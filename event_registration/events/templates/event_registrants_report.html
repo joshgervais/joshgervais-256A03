@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4">Event Registrants</h2>
+  <p class="text-gray-700 mb-4">Event: {{ event.name }}</p>
+  <ul class="space-y-4">
+    {% for registrant in registrants %}
+      <li class="bg-white shadow p-4 rounded">
+        <h3 class="text-xl font-bold">{{ registrant.username }}</h3>
+        <p class="text-gray-500">{{ registrant.first_name }} {{ registrant.last_name }}</p>
+      </li>
+    {% empty %}
+      <li class="text-gray-500">No registrants for this event.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

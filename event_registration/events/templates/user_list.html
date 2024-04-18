@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4">User List</h2>
+  <ul class="space-y-4">
+    {% for user in users %}
+      <li class="bg-white shadow p-4 rounded">
+        <h3 class="text-xl font-bold">{{ user.username }}</h3>
+        <p class="text-gray-500">{{ user.first_name }} {{ user.last_name }}</p>
+      </li>
+    {% empty %}
+      <li class="text-gray-500">No users found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
